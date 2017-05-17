@@ -1,11 +1,6 @@
-
-import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 public class testBTN {
 
@@ -14,7 +9,7 @@ public class testBTN {
 	@Before
 	public void setUp() throws Exception {
 		/*TR = 	0.0031;
-		 PU = 3.50
+		 PU = 3.50 00 00
 		 juros = 9.80
 		*/
 		btn = new BTN(0.0031, 3.50, 9.80);
@@ -22,35 +17,37 @@ public class testBTN {
 	
 	@Test
 	public void testeAtualizacaoPU() {
-		double PUanterior = btn.getPU();
-		double PUatualizado = btn.atualizarPU();
+		double PUanterior = btn.getPrecoUnitario();
+		btn.atualizarPU();
+		double PUatualizado = btn.getPrecoUnitario();
 		
-		assertEquals(PUanterior * btn.getTR(), PUatualizado);
+		Assert.assertEquals(PUanterior * btn.getParametroDeAtualizacao(), PUatualizado, 0);
 	}
 	
 	@Test
 	public void testeCalculaFatorJuros(){
 		int numeroDeMeses = 2;
-		double fatorJurosEsperado = 1.01570375;
-		
-		assertEquals(btn.calculaFJ(numeroDeMeses), fatorJurosEsperado) ;
+		double fatorJurosEsperado = 0.01570375;
+		Assert.assertEquals(btn.calculaFatorDeJuros(numeroDeMeses), fatorJurosEsperado, 0) ;
 	}
 	
 	@Test
 	public void testeCalculaJuros(){
-		int numeroDeMeses;
-		double fatorJuros = 1.01570375;
-		double jurosEsperado = fatorJuros * btn.getPU();
+		Precision p = new Precision();
+		int numeroDeMeses = 2;
+		double fatorJuros = btn.calculaFatorDeJuros(numeroDeMeses);
+		double jurosEsperado = p.formatNumber(fatorJuros * btn.getPrecoUnitario(), 6, false);
 		
-		assertEquals(btn.calculaJuros(numeroDeMeses), jurosEsperado);
+		Assert.assertEquals(btn.calculaJuros(numeroDeMeses), jurosEsperado, 0);
 	}
 	
 	@Test
 	public void testeCalculaPrincipal(){
 		int quantidade = 3;
-		double principalEsperado = quantidade * btn.getPU();
+		double principalEsperado = quantidade * btn.getPrecoUnitario();
+		btn.calculaPrincipal(quantidade);
 		
-		assertEquals(btn.calculaPrincipal(quantidade), principalEsperado);
+		Assert.assertEquals(btn.getPrincipal(), principalEsperado, 0);
 	}
 
 }
