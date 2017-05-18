@@ -2,9 +2,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class testLFT {
+public class testLFTB {
 	Selic selic;
-	LFT lft;
+	LFTB lftb;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -15,28 +15,28 @@ public class testLFT {
 		selic.registerTaxasSelic(1.70, "04/10/10");
 		selic.registerTaxasSelic(1.80, "05/10/10");
 		
-		lft = new LFT(selic);
+		lftb = new LFTB(selic);
 		
-		lft.registerValorNominal(2.012121, "02/10/10");
-		lft.registerValorNominal(3.323434, "03/10/10");
-		lft.registerValorNominal(4.123121, "04/10/10");
-		lft.registerValorNominal(5.123123, "05/10/10");
+		lftb.registerValorNominal(2.012121, "02/10/10");
+		lftb.registerValorNominal(3.323434, "03/10/10");
+		lftb.registerValorNominal(4.123121, "04/10/10");
+		lftb.registerValorNominal(5.123123, "05/10/10");
 	}
 	
 	@Test
 	public void testAtualizarValorNominal(){
-		lft.atualizarValorNominal("03/10/10", "05/05/10");
+		lftb.atualizarValorNominal("03/10/10", "05/05/10");
 		double valorNAEsperado = 3.324088;
-		double valorNominalAtualizado = lft.getValorNominalAtualizado();
+		double valorNominalAtualizado = lftb.getValorNominalAtualizado();
 		
 		Assert.assertEquals(valorNAEsperado, valorNominalAtualizado, 0);
 	}
 
 	@Test
 	public void testValorNominalDiferenteAposAtualizado(){
-		double valorNominalAntigo = lft.getValorNominalAtualizado();
-		lft.atualizarValorNominal("03/10/10", "05/05/10");
-		double valorNominalAtualizado = lft.getValorNominalAtualizado();
+		double valorNominalAntigo = lftb.getValorNominalAtualizado();
+		lftb.atualizarValorNominal("03/10/10", "05/05/10");
+		double valorNominalAtualizado = lftb.getValorNominalAtualizado();
 		
 		Assert.assertNotSame(valorNominalAntigo,valorNominalAtualizado);
 	}

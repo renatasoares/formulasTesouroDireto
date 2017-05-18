@@ -4,12 +4,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-public class LFT extends Selic{
+public class LFTB extends Selic{
 
 	double valorNominalAtualizado;
 	Selic selic = new Selic();
 	
-	public LFT(Selic selic) {
+	public LFTB(Selic selic) {
 		super();
 		this.selic = selic;
 	}
