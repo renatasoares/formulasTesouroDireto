@@ -1,6 +1,6 @@
-import org.junit.Before;
 import org.junit.Test;
-import junit.framework.Assert;
+import org.junit.Assert;
+import org.junit.Before;
 
 public class testSelic {
 //1.00019679
@@ -20,7 +20,7 @@ public class testSelic {
 	public void testcalculoFatorProdutorio(){
 		double fatorProdutorioEsperado = 1.00019679;
 		
-		Assert.assertEquals(fatorProdutorioEsperado, selic.calcularFatorProdutorio("03/10/10", "05/10/10"));
+		Assert.assertEquals(fatorProdutorioEsperado, selic.calcularFatorProdutorio("03/10/10", "05/10/10"), 0);
 	}
 
 }
