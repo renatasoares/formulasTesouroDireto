@@ -5,40 +5,50 @@ import org.junit.Test;
 public class testLFTB {
 	Selic selic;
 	LFTB lftb;
+	Precision p;
 	
 	@Before
 	public void setUp() throws Exception {
+		p = new Precision();
 		selic = new Selic();		
 
-		selic.registerTaxasSelic(1.20, "02/10/10");
-		selic.registerTaxasSelic(1.50, "03/10/10");
-		selic.registerTaxasSelic(1.70, "04/10/10");
-		selic.registerTaxasSelic(1.80, "05/10/10");
+		selic.registerSelicTax(1.20, "02/10/2010");
+		selic.registerSelicTax(1.50, "03/10/2010");
+		selic.registerSelicTax(1.70, "04/10/2010");
+		selic.registerSelicTax(1.80, "05/10/2010");
 		
 		lftb = new LFTB(selic);
 		
-		lftb.registerValorNominal(2.012121, "02/10/10");
-		lftb.registerValorNominal(3.323434, "03/10/10");
-		lftb.registerValorNominal(4.123121, "04/10/10");
-		lftb.registerValorNominal(5.123123, "05/10/10");
+		lftb.registerNominalValue(2.012121, "02/10/2010");
+		lftb.registerNominalValue(3.323434, "03/10/2010");
+		lftb.registerNominalValue(4.123121, "04/10/2010");
+		lftb.registerNominalValue(5.123123, "05/10/2010");
 	}
 	
 	@Test
-	public void testAtualizarValorNominal(){
-		lftb.atualizarValorNominal("03/10/10", "05/05/10");
-		double valorNAEsperado = 3.324088;
-		double valorNominalAtualizado = lftb.getValorNominalAtualizado();
+	public void testUpdateNominalValue(){
+		lftb.updateNominalValue("03/10/2010", "05/05/2010");
+		double nominalValueExpected = 3.324088;
+		double nominalValueUpdated = lftb.getUpdatedNominalValue();
 		
-		Assert.assertEquals(valorNAEsperado, valorNominalAtualizado, 0);
+		Assert.assertEquals(nominalValueExpected, nominalValueUpdated, 0);
 	}
 
 	@Test
-	public void testValorNominalDiferenteAposAtualizado(){
-		double valorNominalAntigo = lftb.getValorNominalAtualizado();
-		lftb.atualizarValorNominal("03/10/10", "05/05/10");
-		double valorNominalAtualizado = lftb.getValorNominalAtualizado();
+	public void testIfNominalValueIsDiferentAfterUpdated(){
+		double previousNominalValue = lftb.getUpdatedNominalValue();
+		lftb.updateNominalValue("03/10/2010", "05/05/2010");
+		double updatedNominalValue = lftb.getUpdatedNominalValue();
 		
-		Assert.assertNotSame(valorNominalAntigo,valorNominalAtualizado);
+		Assert.assertNotSame(previousNominalValue,updatedNominalValue);
 	}
 
+	@Test
+	public void testPrecisionOfUpdateNominalValue(){
+		lftb.updateNominalValue("03/10/2010", "05/05/2010");
+		double nominalValueNotExpected = 3.32408;
+		double nominalValueUpdated = lftb.getUpdatedNominalValue();
+		
+		Assert.assertNotSame(nominalValueNotExpected, nominalValueUpdated);
+	}
 }

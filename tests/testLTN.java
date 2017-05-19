@@ -11,10 +11,17 @@ public class testLTN {
 	}
 	
 	@Test
-	public void testCalculoPrecoUnitario(){
-		double PUEsperado = 0.994049;
-		ltn.setPrecoUnitario();
-		Assert.assertEquals(PUEsperado, ltn.getPrecoUnitario(), 0);
+	public void testCalculateOfUnitPrice(){
+		double UPExpected = 0.994049;
+		ltn.setUnitPrice();
+		Assert.assertEquals(UPExpected, ltn.getUnitPrice(), 0);
+	}
+	
+	@Test
+	public void testPrecisionOfCalculateOfUnitPrice(){
+		double UPNotExpected = 0.994050;
+		ltn.setUnitPrice();
+		Assert.assertNotSame(UPNotExpected, ltn.getUnitPrice());
 	}
 
 }

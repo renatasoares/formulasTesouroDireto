@@ -12,19 +12,19 @@ public class NTNA1 extends Precision {
 	
 	public double calculatePU(double quotationDolarA, double quotationDolarB, double emissionValue, int amortizationPercentege) {
 		double puAmortization = (quotationDolarA/quotationDolarB) * calculateNetValue(emissionValue, amortizationPercentege);
-		setPUAmortization(formatNumber(puAmortization, 6, false));
-		return formatNumber(puAmortization, 6, false);
+		setPUAmortization(formactNumber(puAmortization, 6, false));
+		return formactNumber(puAmortization, 6, false);
 	}
 	
 	public double calculateInterestFactor(String dtp, String dtup, int rate) {
 		Date date = new Date();
 		double factor = (date.formactDate(dtp, dtup)/360.0) * (rate/100.0);
-		return formatNumber(factor, 8, true);
+		return formactNumber(factor, 8, true);
 	}
 	
 	public double calculateInterest(String dtp, String dtup, int rate) {
 		double interest = getPUAmortization() * calculateInterestFactor(dtp, dtup, rate);
-		return formatNumber(interest, 6, false); 	
+		return formactNumber(interest, 6, false); 	
 	}
 	
 	public double getPUAmortization() {

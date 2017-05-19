@@ -17,15 +17,15 @@ public class testNTNA1 {
 	@Test
 	public void testCalculatePU() {
 		double pu = (3.23/2.99)*(1000 * 0.8);
-		double puExpected = precision.formatNumber(pu, 6, false);
-		
+		double puExpected = precision.formactNumber(pu, 6, false);
+
 		Assert.assertNotSame(ntnA1.calculatePU(3.23, 2.99, 1000, 80), puExpected );
 	}
 
 	@Test
 	public void testCalculateInterestFactor() {
 		double interestFactor = (120/360.0) * (15/100.0);
-		double interestFactorExpected = precision.formatNumber(interestFactor, 8, true);
+		double interestFactorExpected = precision.formactNumber(interestFactor, 8, true);
 
 		Assert.assertEquals(ntnA1.calculateInterestFactor("10/01/2017", "10/05/2017", 15), interestFactorExpected, 0);
 	}

@@ -2,57 +2,56 @@ import java.lang.Math;
 
 public class BTN extends Precision {
 
-	double parametroDeAtualizacao;
-	double precoUnitario;
-	double juros;
+	double updateParameter;
+	double unitPrice;
+	double interest;
 	double principal;
 	
-	public BTN(double parametroDeAtualizacao, double precoUnitario, double juros) {
+	public BTN(double updateParameter, double unitPrice, double interest) {
 		super();
-		this.parametroDeAtualizacao = parametroDeAtualizacao;
-		this.precoUnitario = precoUnitario;
-		this.juros = juros;
+		this.updateParameter = updateParameter;
+		this.unitPrice = unitPrice;
+		this.interest = interest;
 	}
 	
-	public void atualizarPU(){
-		double PU = this.precoUnitario * this.parametroDeAtualizacao;
-		setPrecoUnitario(formatNumber(PU, 6, false));
+	public void updateUnitPrice(){
+		double PU = this.unitPrice * this.updateParameter;
+		setUnitPrice(formactNumber(PU, 6, false));
 	}
 	
-	public double calculaFatorDeJuros(int numeroMeses){
-		double taxaJuros = 1 + (getJuros()/100);
-		double FJ = Math.pow(taxaJuros, numeroMeses/12.0) - 1;
-		return formatNumber(FJ, 8, true);
+	public double calculateInterestFactor(int months){
+		double interestRate = 1 + (getInterest()/100);
+		return formactNumber(Math.pow(interestRate, months/12.0) - 1, 8, true);
 	}
 	
-	public double calculaJuros(int numeroMeses){
-		double juros = calculaFatorDeJuros(numeroMeses) * getPrecoUnitario();
-		return formatNumber(juros, 6, false);
+	public double calculateInterest(int months){
+		double interest = calculateInterestFactor(months) * getUnitPrice();
+		return formactNumber(interest, 6, false);
 	}
 	
-	public void calculaPrincipal(int quantidade){
-		double principal = getPrecoUnitario()*quantidade;
-		setPrincipal(formatNumber(principal, 2, true));
+	public void calculatePrincipal(int quantity){
+		double principal = getUnitPrice()*quantity;
+		setPrincipal(formactNumber(principal, 2, true));
 	}
 	
-	public double getParametroDeAtualizacao() {
-		return this.parametroDeAtualizacao;
+	public double getUpdateParameter() {
+		return this.updateParameter;
 	}
-	private void setParametroDeAtualizacao(double parametroDeAtualizacao) {
-		this.parametroDeAtualizacao = parametroDeAtualizacao;
+	private void setUpdateParameter(double updateParameter) {
+		this.updateParameter = updateParameter;
 	}
-	public double getPrecoUnitario() {
-		return this.precoUnitario;
+	public double getUnitPrice() {
+		return this.unitPrice;
 	}
-	private void setPrecoUnitario(double precoUnitario) {
-		this.precoUnitario = precoUnitario;
+	private void setUnitPrice(double precoUnitario) {
+		this.unitPrice = precoUnitario;
 	}
-	public double getJuros() {
-		return this.juros;
+	public double getInterest() {
+		return this.interest;
 	}
 
-	private void setJuros(double juros) {
-		this.juros = juros;
+	private void setInterest(double interest) {
+		this.interest = interest;
 	}
 	public double getPrincipal() {
 		return this.principal;

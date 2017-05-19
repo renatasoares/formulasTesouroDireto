@@ -9,38 +9,38 @@ public class Selic extends Precision{
 	
 	private final Map<String, Double> selic = new HashMap<String, Double>();
 	
-	public void registerTaxasSelic(double taxa, String data){
-		double precisionTaxa = formatNumber(taxa, 2, false);
-		selic.put(data, precisionTaxa);
+	public void registerSelicTax(double tax, String date){
+		double precisionTax = formactNumber(tax, 2, false);
+		selic.put(date, precisionTax);
 	}
 	
-	private Map<String, Double> sortTaxasSelicbyDate(){
-        Map<String, Double> treeMap = new TreeMap<String, Double>(selic);
-        return treeMap;
+	private Map<String, Double> sortSelicTaxesbyDate(){
+        Map<String, Double> sortedMap = new TreeMap<String, Double>(selic);
+        return sortedMap;
 	}
 	
-	public double calcularFatorProdutorio(String dataBase, String dataFinal){
-		double fatorProdutorio = 1;
-		boolean findData = false;
-		Map <String, Double> sortedTaxasSelic = sortTaxasSelicbyDate();
-		Set<Entry<String, Double>> set = sortedTaxasSelic.entrySet();
+	public double calculateProductFactor(String baseDate, String finalDate){
+		double productFactor = 1;
+		boolean findDate = false;
+		Map <String, Double> sortedSelicTaxes = sortSelicTaxesbyDate();
+		Set<Entry<String, Double>> set = sortedSelicTaxes.entrySet();
 		Iterator<Entry<String, Double>> i = set.iterator();
 
 		while(i.hasNext()) {
-		    Map.Entry<String, Double> entrada = (Map.Entry<String, Double>)i.next();
-		    if(entrada.getKey() == dataBase){
-		    	findData = true;
+		    Map.Entry<String, Double> values = (Map.Entry<String, Double>)i.next();
+		    if(values.getKey() == baseDate){
+		    	findDate = true;
 		    }
-		    if(entrada.getKey() == dataFinal){
-		    	findData = false;
-		    	fatorProdutorio *= Math.pow((entrada.getValue()/100)+1, 1/252.0);
+		    if(values.getKey() == finalDate){
+		    	findDate = false;
+		    	productFactor *= Math.pow((values.getValue()/100)+1, 1/252.0);
 		    }
-		    if(findData){
-		    	fatorProdutorio *= Math.pow((entrada.getValue()/100)+1, 1/252.0);
+		    if(findDate){
+		    	productFactor *= Math.pow((values.getValue()/100)+1, 1/252.0);
 		    }
 		}
 		
-		return formatNumber(fatorProdutorio, 8, true);
+		return formactNumber(productFactor, 8, true);
 	}
 	
 }

@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 
 public class LFTB extends Selic{
 
-	double valorNominalAtualizado;
+	double updatedNominalValue;
 	Selic selic = new Selic();
 	
 	public LFTB(Selic selic) {
@@ -14,32 +14,32 @@ public class LFTB extends Selic{
 		this.selic = selic;
 	}
 	
-	private final Map<String, Double> valorNominal = new HashMap<String, Double>();
+	private final Map<String, Double> nominalValue = new HashMap<String, Double>();
 	
-	public void registerValorNominal(double valorNominalBase, String data){
-		double precisionValorNominal = formatNumber(valorNominalBase, 6, false);
-		valorNominal.put(data, precisionValorNominal);
+	public void registerNominalValue(double baseNominalValue, String date){
+		double precisionNominalValue = formactNumber(baseNominalValue, 6, false);
+		nominalValue.put(date, precisionNominalValue);
 	}
 
-	public void atualizarValorNominal(String dataBase, String dataFinal){
-		Set<Entry<String, Double>> set = valorNominal.entrySet();
+	public void updateNominalValue(String baseDate, String finalDate){
+		Set<Entry<String, Double>> set = nominalValue.entrySet();
 		Iterator<Entry<String, Double>> i = set.iterator();
 
 		while(i.hasNext()) {
-		    Map.Entry<String, Double> valores = (Map.Entry<String, Double>)i.next();
-		    if(valores.getKey() == dataBase){
-		    	double valorNominalA = valores.getValue()* selic.calcularFatorProdutorio(dataBase, dataFinal);
-		    	setValorNominalAtualizado(formatNumber(valorNominalA, 6 , false));
+		    Map.Entry<String, Double> values = (Map.Entry<String, Double>)i.next();
+		    if(values.getKey() == baseDate){
+		    	double nominalValueA = values.getValue()* selic.calculateProductFactor(baseDate, finalDate);
+		    	setUpdatedNominalValue(formactNumber(nominalValueA, 6 , false));
 		    }
 		}
 	}
 
-	public double getValorNominalAtualizado() {
-		return valorNominalAtualizado;
+	public double getUpdatedNominalValue() {
+		return updatedNominalValue;
 	}
 
-	public void setValorNominalAtualizado(double valorNominalAtualizado) {
-		this.valorNominalAtualizado = valorNominalAtualizado;
+	public void setUpdatedNominalValue(double valorNominalAtualizado) {
+		this.updatedNominalValue = valorNominalAtualizado;
 	}
 	
 }

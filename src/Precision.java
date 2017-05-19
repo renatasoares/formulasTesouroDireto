@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class Precision {
 	
-	public double formatNumber(double number, int scale, boolean arredondar){
+	public double formactNumber(double number, int scale, boolean arredondar){
 		String format = "#.";
 		for(int i=0; i<scale;i++){
 			format += "#";

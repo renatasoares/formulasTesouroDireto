@@ -1,23 +1,23 @@
 public class LTN extends Precision{
-	double precoUnitario;
-	double taxaIndicativa;
+	double unitPrice;
+	double indicativeTax;
 	
-	public LTN(double taxaIndicativa){
+	public LTN(double indicativeTax){
 		super();
-		this.taxaIndicativa = taxaIndicativa;
+		this.indicativeTax = indicativeTax;
 	}
 	
-	public double getPrecoUnitario() {
-		return precoUnitario;
+	public double getUnitPrice() {
+		return unitPrice;
 	}
 
-	public void setPrecoUnitario(){
-		double PU = 1/Math.pow(1+getTaxaIndicativa(), 1/252.0);
-		this.precoUnitario = formatNumber(PU, 6, false);
+	public void setUnitPrice(){
+		double UP = 1/Math.pow(1+getIndicativeTax(), 1/252.0);
+		this.unitPrice = formactNumber(UP, 6, false);
 	}
 
-	public double getTaxaIndicativa() {
-		return taxaIndicativa;
+	public double getIndicativeTax() {
+		return indicativeTax;
 	}
 		
 }
