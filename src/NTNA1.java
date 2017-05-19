@@ -1,57 +1,37 @@
 public class NTNA1 extends Precision {
 
-	double cotacaoDolarA;
-	double cotacaoDolarB;
-	double puAmortizacao;
+	double puAmortization;
 		
-	public NTNA1(double cotacaoDolarA, double cotacaoDolarB) {
-		this.cotacaoDolarA = cotacaoDolarA;
-		this.cotacaoDolarB = cotacaoDolarB;
+	public NTNA1() {
 	}
 	
-	public double calculaValorLiquido(double valorEmissao, int percentualAmortizacao) {
-		double valorLiquido = (valorEmissao * percentualAmortizacao)/100;
-		return valorLiquido;
+	public double calculateNetValue(double emissionValue, int percentualAmortizacao) {
+		double netValue = (emissionValue * percentualAmortizacao)/100;
+		return netValue;
 	}
 	
-	public double calculaPU(double valorEmissao, int percentualAmortizacao) {
-		double puAmortizacao = (getCotacaoDolarA()/getCotacaoDolarB()) * calculaValorLiquido(valorEmissao, percentualAmortizacao);
-		setPUAmortizacao(formatNumber(puAmortizacao, 6, false));
-		return formatNumber(puAmortizacao, 6, false);
+	public double calculatePU(double quotationDolarA, double quotationDolarB, double emissionValue, int amortizationPercentege) {
+		double puAmortization = (quotationDolarA/quotationDolarB) * calculateNetValue(emissionValue, amortizationPercentege);
+		setPUAmortization(formatNumber(puAmortization, 6, false));
+		return formatNumber(puAmortization, 6, false);
 	}
 	
-	public double calculaFatorJuros(String dtp, String dtup, int taxa) {
+	public double calculateInterestFactor(String dtp, String dtup, int rate) {
 		Date date = new Date();
-		double fator = (date.formactDate(dtp, dtup)/360.0) * (taxa/100.0);
-		return formatNumber(fator, 8, true);
+		double factor = (date.formactDate(dtp, dtup)/360.0) * (rate/100.0);
+		return formatNumber(factor, 8, true);
 	}
 	
-	public double calculaJuros(String dtp, String dtup, int taxa) {
-		double juros = getPUAmortizacao() * calculaFatorJuros(dtp, dtup, taxa);
-		return formatNumber(juros, 6, false); 	
+	public double calculateInterest(String dtp, String dtup, int rate) {
+		double interest = getPUAmortization() * calculateInterestFactor(dtp, dtup, rate);
+		return formatNumber(interest, 6, false); 	
 	}
 	
-	public double getCotacaoDolarA() {
-		return cotacaoDolarA;
+	public double getPUAmortization() {
+		return puAmortization;
 	}
 
-	public void setCotacaoDolarA(double cotacaoDolarA) {
-		this.cotacaoDolarA = cotacaoDolarA;
-	}
-
-	public double getCotacaoDolarB() {
-		return cotacaoDolarB;
-	}
-
-	public void setCotacaoDolarB(double cotacaoDolarB) {
-		this.cotacaoDolarB = cotacaoDolarB;
-	}
-
-	public double getPUAmortizacao() {
-		return puAmortizacao;
-	}
-
-	public void setPUAmortizacao(double puAmortizacao) {
-		this.puAmortizacao = puAmortizacao;
+	public void setPUAmortization(double puAmortization) {
+		this.puAmortization = puAmortization;
 	}
 }
