@@ -1,36 +1,45 @@
-import static org.junit.Assert.*;
-
+import org.junit.Before;
 import org.junit.Test;
+
+import org.junit.Assert;
 
 public class testNTNA1 {
 
 	NTNA1 ntnA1;
+	Precision precision;
 	
+	@Before
+	public void setUp() throws Exception {
+		/*
+		cotacaoDolarA = 3.23
+		cotacaoDolarB = 2.99
+		taxaJuros = 15
+		*/	
+		ntnA1 = new NTNA1(3.23, 2.99);
+		precision = new Precision();
+	}
+
 	@Test
 	public void testeCalculaPU() {
-		double cotacaoDolarA = 3.23;
-		double cotacaoDolarB = 2.99;
-		double vl = 1000;
-		double puEsperado = 1080.267559;
+		double pu = (3.23/2.99)*(1000 * 0.8);
+		double puEsperado = precision.formatNumber(pu, 6, false);
 		
-		assertEquals(ntnA1.calculaPU(cotacaoDolarA, cotacaoDolarB, vl), puEsperado);
+		Assert.assertNotSame(ntnA1.calculaPU(1000, 80), puEsperado);
 	}
+
 	@Test
 	public void testeCalculaFatorJuros() {
-		int dtp = ntnA1.data(10, 4);
-		int dtup = ntnA1.data(10, 8);
-		double fatorJurosEsperado = 0.05666667;
-		
-		assertEquals(ntnA1.calculaFatorJuros(dtp, dtup), fatorJurosEsperado);
+		double fatorJuros = (120/360.0) * (15/100.0);
+		double fatorJurosEsperado = precision.formatNumber(fatorJuros, 8, true);
+
+		Assert.assertEquals(ntnA1.calculaFatorJuros("10/01/2017", "10/05/2017", 15), fatorJurosEsperado, 0);
 	}
 	
 	@Test
 	public void testeCalculaJuros() {
-		double PUam = 1080.267559;
-		double fatorJuros = 0.05666667;
-		double jurosEsperado = 61.215165;
+		double jurosEsperado = ntnA1.getPUAmortizacao() * (15/100.0) ;
 		
-		assertEquals(ntnA1.calculaJuros(PUam, fatorJuros), jurosEsperado);		
+		Assert.assertEquals(ntnA1.calculaJuros("10/01/2017", "10/05/2017", 15), jurosEsperado, 0);		
 	}	
 
 }

@@ -3,42 +3,31 @@ public class NTNA1 extends Precision {
 	double cotacaoDolarA;
 	double cotacaoDolarB;
 	double puAmortizacao;
-	double percentualAmortizacao;
-	double valorEmissao;
-	int taxaJuros;
-	String dtp;
-	String dtup;
 		
-	public NTNA1(double cotacaoDolarA, double cotacaoDolarB, int taxaJuros, double percentualAmortizacao, 
-	double valorEmissao, String dtp, String dtup) {
+	public NTNA1(double cotacaoDolarA, double cotacaoDolarB) {
 		this.cotacaoDolarA = cotacaoDolarA;
 		this.cotacaoDolarB = cotacaoDolarB;
-		this.taxaJuros = taxaJuros;
-		this.valorEmissao = valorEmissao;
-		this.percentualAmortizacao = percentualAmortizacao;
-		this.dtp = dtp;
-		this.dtup = dtup;
 	}
 	
-	public double calculaValorLiquido() {
-		double valorLiquido = getValorEmissao() * getPercentualAmortizacao();
+	public double calculaValorLiquido(double valorEmissao, int percentualAmortizacao) {
+		double valorLiquido = (valorEmissao * percentualAmortizacao)/100;
 		return valorLiquido;
 	}
 	
-	public double calculaPU() {
-		double puAmortizacao = (getCotacaoDolarA()/getCotacaoDolarB()) * calculaValorLiquido();
+	public double calculaPU(double valorEmissao, int percentualAmortizacao) {
+		double puAmortizacao = (getCotacaoDolarA()/getCotacaoDolarB()) * calculaValorLiquido(valorEmissao, percentualAmortizacao);
 		setPUAmortizacao(formatNumber(puAmortizacao, 6, false));
 		return formatNumber(puAmortizacao, 6, false);
 	}
 	
-	public double calculaFatorJuros(String dtp, String dtup) {
+	public double calculaFatorJuros(String dtp, String dtup, int taxa) {
 		Data data = new Data();
-		double fator = (data.formataData(dtp, dtup)/360) * (getTaxaJuros()/100);
+		double fator = (data.formataData(dtp, dtup)/360.0) * (taxa/100.0);
 		return formatNumber(fator, 8, true);
 	}
 	
-	public double calculaJuros() {
-		double juros = getPUAmortizacao() * calculaFatorJuros(getDtp(), getDtup());
+	public double calculaJuros(String dtp, String dtup, int taxa) {
+		double juros = getPUAmortizacao() * calculaFatorJuros(dtp, dtup, taxa);
 		return formatNumber(juros, 6, false); 	
 	}
 	
@@ -64,45 +53,5 @@ public class NTNA1 extends Precision {
 
 	public void setPUAmortizacao(double puAmortizacao) {
 		this.puAmortizacao = puAmortizacao;
-	}
-
-	public double getPercentualAmortizacao() {
-		return percentualAmortizacao;
-	}
-
-	public void setPercentualAmortizacao(double percentualAmortizacao) {
-		this.percentualAmortizacao = percentualAmortizacao;
-	}
-
-	public double getValorEmissao() {
-		return valorEmissao;
-	}
-
-	public void setValorEmissao(double valorEmissao) {
-		this.valorEmissao = valorEmissao;
-	}
-
-	public int getTaxaJuros() {
-		return taxaJuros;
-	}
-
-	public void setTaxaJuros(int taxaJuros) {
-		this.taxaJuros = taxaJuros;
-	}
-	
-	public String getDtp() {
-		return dtp;
-	}
-
-	public void setDtp(String dtp) {
-		this.dtp = dtp;
-	}
-
-	public String getDtup() {
-		return dtup;
-	}
-
-	public void setDtup(String dtup) {
-		this.dtup = dtup;
 	}
 }
