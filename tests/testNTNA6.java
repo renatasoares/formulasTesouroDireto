@@ -19,7 +19,7 @@ public class testNTNA6 {
 		double nominalValue = (3.23/2.99) * 1000;
 		double nominalValueExpected = precision.formatNumber(nominalValue, 6, true);
 		
-		Assert.assertNotSame(ntnA6.calculateNominalValueUpdated(3.23, 2.99, 1000), nominalValueExpected, 0);
+		Assert.assertEquals(ntnA6.calculateNominalValueUpdated(3.23, 2.99, 1000), nominalValueExpected, 0);
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class testNTNA6 {
 	
 	@Test
 	public void testCalculateInterest() {
-		double interest = ntnA6.getNominalValueUpdated() * ntnA3.calculateInterestFactor("10/01/2017", "10/05/2017", 15);
+		double interest = ntnA6.getNominalValueUpdated() * ntnA6.calculateInterestFactor("10/01/2017", "10/05/2017", 15);
 		double interestExpected = precision.formatNumber(interest, 6, false);
 		
 		Assert.assertNotSame(ntnA6.calculateInterest("10/01/2017", "10/05/2017", 15), interestExpected);		
