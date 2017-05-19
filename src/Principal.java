@@ -1,7 +1,7 @@
 public class Principal {
 	public static void main(String[] args){
 		Selic selic = new Selic();		
-
+		
 		selic.registerTaxasSelic(1.20, "02/10/2010");
 		selic.registerTaxasSelic(1.50, "03/10/2010");
 		selic.registerTaxasSelic(1.70, "04/10/2010");
@@ -26,5 +26,9 @@ public class Principal {
 		lfta.atualizarValorNominal("02/10/2011", "03/12/2011", "01/01/2012", 10, 5);
 		
 		System.out.println(lfta.getvalorNominalAtualizado());
+		
+		LTN ltn = new LTN(3.50);
+		ltn.setPrecoUnitario();
+		System.out.println(ltn.getPrecoUnitario());
 	}
 }
