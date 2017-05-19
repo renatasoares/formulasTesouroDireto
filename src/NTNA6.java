@@ -9,8 +9,8 @@ public class NTNA6 extends Precision {
 	}
 	
 	public double calculateInterestFactor(String dtp, String dtup, int rate) {
-		Data data = new Data();
-		double fator = (data.formataData(dtp, dtup)/360.0) * (rate/100.0);
+		Date date = new Date();
+		double fator = (date.formactDate(dtp, dtup)/360.0) * (rate/100.0);
 		return formatNumber(fator, 8, true);
 	}
 	

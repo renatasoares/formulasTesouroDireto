@@ -1,7 +1,7 @@
 public class LFTA extends Selic{
 	
 	Selic selic = new Selic();
-	Data data = new Data();
+	Date date = new Date();
 	private double valorNominalEmissao;
 	private double valorNominalAtualizado;
 	private static double taxaAcrescimo =  0.0245;
@@ -13,8 +13,8 @@ public class LFTA extends Selic{
 	}
 	
 	public void atualizarValorNominal(String dataEmissao, String dataAtualizacao, String dataPagamento, int numeroParcelas, int parcelasAmortizadas){
-		double DU = data.formataData(dataEmissao, dataAtualizacao);
-		double DUt = data.formataData(dataEmissao, dataPagamento);
+		double DU = date.formactDate(dataEmissao, dataAtualizacao);
+		double DUt = date.formactDate(dataEmissao, dataPagamento);
 		double arg1 = getFatorProdutorio(dataEmissao, dataAtualizacao) * getValorNominalEmissao() * Math.pow((1 + taxaAcrescimo/100), DU/DUt);
 		double arg2 = getFatorProdutorio(dataEmissao, dataAtualizacao) * getValorNominalEmissao() * Math.pow((1 + taxaAcrescimo), DU/DUt);
 		double arg3 = 1/(numeroParcelas - parcelasAmortizadas);

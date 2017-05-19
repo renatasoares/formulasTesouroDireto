@@ -21,8 +21,8 @@ public class NTNA1 extends Precision {
 	}
 	
 	public double calculaFatorJuros(String dtp, String dtup, int taxa) {
-		Data data = new Data();
-		double fator = (data.formataData(dtp, dtup)/360.0) * (taxa/100.0);
+		Date date = new Date();
+		double fator = (date.formactDate(dtp, dtup)/360.0) * (taxa/100.0);
 		return formatNumber(fator, 8, true);
 	}
 	
