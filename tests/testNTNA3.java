@@ -6,16 +6,12 @@ import org.junit.Test;
 
 public class testNTNA3 {
 
-	NTNA1 ntnA3;
+	NTNA3 ntnA3;
 	Precision precision;
 	
 	@Before
 	public void setUp() throws Exception {
-		/*
-		cotacaoDolarA = 3.23
-		cotacaoDolarB = 2.99
-		*/	
-		ntnA3 = new NTNA3(3.23, 2.99);
+		ntnA3 = new NTNA3();
 		precision = new Precision();
 	}
 
@@ -24,7 +20,7 @@ public class testNTNA3 {
 		double nominalValue = (3.23/2.99) * 1000;
 		double nominalValueExpected = precision.formatNumber(nominalValue, 6, false);
 		
-		Assert.assertNotSame(ntnA3.calculateNominalValue(), nominalValueExpected);
+		Assert.assertNotSame(ntnA3.calculateNominalValue(3.23, 2.99), nominalValueExpected);
 	}
 
 	@Test
@@ -37,8 +33,9 @@ public class testNTNA3 {
 	
 	@Test
 	public void testCalculateInterest() {
-		double interest = ntnA3.getValueNominal() * ntnA3.getInterestFactor();
+		double interest = ntnA3.getNominalValue() * ntnA3.calculateInterestFactor(15, 3);
 		double interestExpected = precision.formatNumber(interest, 6, false);
-		Assert.assertNotSame((ntnA3.calculateInterest(15, 3), interestExpected);		
+		
+		Assert.assertNotSame(ntnA3.calculateInterest(15, 3), interestExpected);		
 	}	
 }
