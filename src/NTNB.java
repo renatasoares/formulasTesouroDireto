@@ -15,13 +15,13 @@ public class NTNB extends Precision{
 		return formactNumber(nominalValue, 6, true, false);
 	}
 	
-	public double calculateInterestFactor(int rate, int n, int dcp, int dct) {
+	public double calculateInterestFactor(double rate, int n, int dcp, int dct) {
 		double doubleDCT = dct;
 		double fator = Math.pow(Math.pow((rate/100.0 + 1), n/12.0), (dcp/doubleDCT));
 		return formactNumber(fator, 8, false, false);
 	}
 	
-	public double calculateInterest(int rate, int n, int dcp, int dct) {
+	public double calculateInterest(double rate, int n, int dcp, int dct) {
 		double interest = getNominalValueUpdated() * calculateInterestFactor(rate, n, dcp, dct);
 		return formactNumber(interest, 6, false, false); 	
 	}

@@ -13,6 +13,10 @@ public class Principal {
 			System.out.println("3 - LFT-B");
 			System.out.println("4 - LTN");
 			System.out.println("5 - Sair");
+			System.out.println("6 - NTN-A3");
+			System.out.println("7 - NTN-A6");
+			System.out.println("8 - NTN-B");
+			System.out.println("9 - Sair");
 			System.out.println("Digite a opção desejada: ");
 			
 			int option = scanner.nextInt();
@@ -146,13 +150,119 @@ public class Principal {
 				
 				System.out.printf("O preço unitário atualizado é %f\n", ltn.getUnitPrice());
 				
-			}
-			
-			else if(option == 5){
+			} else if (option == 5) {
+				NTNA1 ntnA1 = new NTNA1();
+
+				System.out.println(
+						"Digite a cotação do dólar útil anterior à data de atualização, pagamento ou vencimento: ");
+				double quotationDolarA = scanner.nextDouble();
+				System.out.println("Digite a cotação do dólar do dia útil anterior à data base ou de emissão: ");
+				double quotationDolarB = scanner.nextDouble();
+				System.out.println("Digite o valor de emissão do título: ");
+				double emissionValue = scanner.nextDouble();
+				System.out.println("Digite o percentual de amortização (sem o '%'): ");
+				double amortizationPercentege = scanner.nextDouble();
+
+				ntnA1.calculatePU(quotationDolarA, quotationDolarB, emissionValue, amortizationPercentege);
+				System.out.printf("O preço unitário de amortização é %f\n", ntnA1.getPUAmortization());
+
+				System.out.println("Digite a data referente ao pagamento do título atual: ");
+				String dtp = scanner.next();
+				System.out.println("Digite a data referente ao último pagamento do título: ");
+				String dtup = scanner.next();
+				System.out.println("Digite a taxa de juros em porcentagem ao ano (sem o '%'): ");
+				double rate = scanner.nextDouble();
+
+				double interest = ntnA1.calculateInterest(dtp, dtup, rate);
+				System.out.printf("O valor unitário do juros é de %f\n", interest);
+
+			} else if (option == 6) {
+				NTNA3 ntnA3 = new NTNA3();
+
+				System.out.println(
+						"Digite a cotação do dólar útil anterior à data de atualização, pagamento ou vencimento: ");
+				double quotationDolarA = scanner.nextDouble();
+				System.out.println("Digite a cotação do dólar do dia útil anterior à data base ou de emissão: ");
+				double quotationDolarB = scanner.nextDouble();
+
+				ntnA3.calculateNominalValue(quotationDolarA, quotationDolarB);
+				System.out.printf("O valor nominal é de %f\n", ntnA3.getNominalValue());
+
+				System.out.println("Digite a taxa de juros em porcentagem ao ano (sem o '%'): ");
+				double rate = scanner.nextDouble();
+				System.out.println("Digite o número de meses referente ao período de pagamento de juros: ");
+				int n = scanner.nextInt();
+
+				double interest = ntnA3.calculateInterest(rate, n);
+				System.out.printf("O valor unitário do juros é de %f\n", interest);
+			} else if (option == 7) {
+				NTNA6 ntnA6 = new NTNA6();
+
+				System.out.println(
+						"Digite a cotação do dólar útil anterior à data de atualização, pagamento ou vencimento: ");
+				double quotationDolarA = scanner.nextDouble();
+				System.out.println("Digite a cotação do dólar do dia útil anterior à data base ou de emissão: ");
+				double quotationDolarB = scanner.nextDouble();
+				System.out.println("Digite o valor de emissão do título: ");
+				double emissionValue = scanner.nextDouble();
+
+				ntnA6.calculateNominalValueUpdated(quotationDolarA, quotationDolarB, emissionValue);
+				System.out.printf("O valor nominal atualizado é de %f\n", ntnA6.getNominalValueUpdated());
+
+				System.out.println("Digite a data referente ao pagamento do título: ");
+				String dtp = scanner.next();
+				System.out.println("Digite a data referente ao último pagamento do título: ");
+				String dtup = scanner.next();
+				System.out.println("Digite a taxa de juros em porcentagem ao ano (sem o '%'): ");
+				double rate = scanner.nextDouble();
+
+				double interest = ntnA6.calculateInterest(dtp, dtup, rate);
+				System.out.printf("O valor unitário do juros é de %f\n", interest);
+				
+			} else if (option == 8) {
+				NTNB ntnb = new NTNB();
+
+				System.out.println("Digite o índice de preços ao consumidor amplo do mês anterior ao de atualização: ");
+				double ipcat1 = scanner.nextDouble();
+				System.out.println(
+						"Digite o índice de preços ao consumidor amplo do mês anterior ao de data-base ou emissão: ");
+				double ipcat0 = scanner.nextDouble();
+				System.out.println(
+						"Digite número de dias corridos, entre o décimo quinto dia do mês da emissão (inclusive) até o dia para o qual se deseja realizar o ajuste ");
+				int dc = scanner.nextInt();
+				System.out.println("Digite o  número de dias corridos correspondentes entre o décimo quinto dia do\n"
+						+ "mês da emissão (inclusive) até o décimo quinto dia do mês subsequente ao da emissão");
+				int dct = scanner.nextInt();
+				System.out.println("Digite índice de preços ao consumidor amplo (IPCA) do mês de emissão: ");
+				double ipcatA = scanner.nextDouble();
+				System.out.println("Digite índice de preços ao consumidor amplo (IPCA) ao de data-base ou emissão: ");
+				double ipcatB = scanner.nextDouble();
+				System.out.println("Digite o valor nominal de emissão do título: ");
+				double vn = scanner.nextDouble();
+
+				ntnb.calculateNominalValueUpdated(ipcat1, ipcat0, dc, dct, ipcatA, ipcatB, vn);
+				System.out.printf("O valor nominal atualizado é de %f\n", ntnb.getNominalValueUpdated());
+
+				System.out.println("Digite a taxa de juros em porcentagem ao ano (sem o '%'): ");
+				double rate = scanner.nextDouble();
+				System.out.println("Digite o número de meses referente ao período de pagamento de juros: ");
+				int n = scanner.nextInt();
+				System.out.println("Digite o número de dias corridos contados desde a data de emissão,\n"
+						+ "incorporação ou último pagamento de juros, se houver, até a data de\n"
+						+ "atualização, pagamento ou vencimento ");
+				int dcp = scanner.nextInt();
+				System.out.println("Digite o número de dias corridos contados desde a data de emissão,\n"
+						+ "incorporação ou último pagamento de juros, se houver, até a data do\n"
+						+ "próximo pagamento ou vencimento ");
+				int dctJ = scanner.nextInt();
+
+				double interest = ntnb.calculateInterest(rate, n, dcp, dctJ);
+				System.out.printf("O valor unitário do juros é de %f\n", interest);
+				
+			} else if (option == 9) {
 				System.out.println("Saindo...");
 				break;
 			}
-			
 		}
 		scanner.close();
 	}

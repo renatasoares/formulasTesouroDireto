@@ -11,12 +11,12 @@ public class NTNA3 extends Precision {
 		return formactNumber(nominalValue, 6, false, false);
 	}
 	
-	public double calculateInterestFactor(int rate, int n) {
+	public double calculateInterestFactor(double rate, int n) {
 		double interestFactor = (rate/100.0) * (n/12.0);
 		return formactNumber(interestFactor, 8, true, false);
 	}
 	
-	public double calculateInterest(int rate, int n) {
+	public double calculateInterest(double rate, int n) {
 		double interest = getNominalValue() * calculateInterestFactor(rate, n);
 		return formactNumber(interest, 6, false, false); 	
 	}
