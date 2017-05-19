@@ -33,7 +33,7 @@ public class testBTN {
 	
 	@Test
 	public void testPrecisionOfUpdateUnitPrice() {
-		double previousWrongUnitPrice = p.formactNumber(btn.getUnitPrice() * btn.getUpdateParameter(), 2, false);
+		double previousWrongUnitPrice = p.formactNumber(btn.getUnitPrice() * btn.getUpdateParameter(), 2, false, false);
 		btn.updateUnitPrice();
 		double updatedUnitPrice = btn.getUnitPrice();
 		
@@ -59,7 +59,7 @@ public class testBTN {
 	public void testCalculateInterest(){
 		int months = 2;
 		double interestFactor = btn.calculateInterestFactor(months);
-		double interestExpected = p.formactNumber(interestFactor * btn.getUnitPrice(), 6, false);
+		double interestExpected = p.formactNumber(interestFactor * btn.getUnitPrice(), 6, false, false);
 		
 		Assert.assertEquals(btn.calculateInterest(months), interestExpected, 0);
 	}
@@ -68,7 +68,7 @@ public class testBTN {
 	public void testPrecisionOfCalculateInterest(){
 		int months = 2;
 		double interestFactor = btn.calculateInterestFactor(months);
-		double interestNotExpected = p.formactNumber(interestFactor * btn.getUnitPrice(), 3, false);
+		double interestNotExpected = p.formactNumber(interestFactor * btn.getUnitPrice(), 3, false, false);
 		
 		Assert.assertNotSame(btn.calculateInterest(months), interestNotExpected);
 	}
@@ -85,7 +85,7 @@ public class testBTN {
 	@Test
 	public void testPrecisionOfCalculatePrincipal(){
 		int quantity = 3;
-		double principalNotExpected = p.formactNumber(quantity * btn.getUnitPrice(), 1, true);
+		double principalNotExpected = p.formactNumber(quantity * btn.getUnitPrice(), 1, true, false);
 		btn.calculatePrincipal(quantity);
 		
 		Assert.assertEquals(btn.getPrincipal(), principalNotExpected, 0);

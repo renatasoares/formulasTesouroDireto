@@ -10,7 +10,7 @@ public class Selic extends Precision{
 	private final Map<String, Double> selic = new HashMap<String, Double>();
 	
 	public void registerSelicTax(double tax, String date){
-		double precisionTax = formactNumber(tax, 2, false);
+		double precisionTax = formactNumber(tax, 2, false, false);
 		selic.put(date, precisionTax);
 	}
 	
@@ -40,7 +40,7 @@ public class Selic extends Precision{
 		    }
 		}
 		
-		return formactNumber(productFactor, 8, true);
+		return formactNumber(productFactor, 8, true, false);
 	}
 	
 }

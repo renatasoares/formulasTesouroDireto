@@ -16,22 +16,22 @@ public class BTN extends Precision {
 	
 	public void updateUnitPrice(){
 		double PU = this.unitPrice * this.updateParameter;
-		setUnitPrice(formactNumber(PU, 6, false));
+		setUnitPrice(formactNumber(PU, 6, false, false));
 	}
 	
 	public double calculateInterestFactor(int months){
 		double interestRate = 1 + (getInterest()/100);
-		return formactNumber(Math.pow(interestRate, months/12.0) - 1, 8, true);
+		return formactNumber(Math.pow(interestRate, months/12.0) - 1, 8, true, false);
 	}
 	
 	public double calculateInterest(int months){
 		double interest = calculateInterestFactor(months) * getUnitPrice();
-		return formactNumber(interest, 6, false);
+		return formactNumber(interest, 6, false, false);
 	}
 	
 	public void calculatePrincipal(int quantity){
 		double principal = getUnitPrice()*quantity;
-		setPrincipal(formactNumber(principal, 2, true));
+		setPrincipal(formactNumber(principal, 2, true, false));
 	}
 	
 	public double getUpdateParameter() {

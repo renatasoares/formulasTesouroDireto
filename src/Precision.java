@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class Precision {
 	
-	public double formactNumber(double number, int scale, boolean arredondar){
+	public double formactNumber(double number, int scale, boolean lettingUp, boolean lettingDown){
 		String format = "#.";
 		for(int i=0; i<scale;i++){
 			format += "#";
@@ -14,8 +14,11 @@ public class Precision {
 		
 		NumberFormat nf = new DecimalFormat (format, new DecimalFormatSymbols (new Locale ("en", "US")));
 		
-		if(arredondar){
+		if(lettingUp){
 			nf.setRoundingMode(RoundingMode.HALF_UP);
+		}
+		if(lettingDown){
+			nf.setRoundingMode(RoundingMode.HALF_DOWN);
 		}
 		
 		return Double.parseDouble(nf.format(number));

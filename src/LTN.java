@@ -13,7 +13,7 @@ public class LTN extends Precision{
 
 	public void setUnitPrice(){
 		double UP = 1/Math.pow(1+getIndicativeTax(), 1/252.0);
-		this.unitPrice = formactNumber(UP, 6, false);
+		this.unitPrice = formactNumber(UP, 6, false, false);
 	}
 
 	public double getIndicativeTax() {

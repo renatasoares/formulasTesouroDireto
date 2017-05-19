@@ -9,7 +9,7 @@ public class LFTA extends Selic{
 	public LFTA(Selic selic, double emissionNominalValue) {
 		super();
 		this.selic = selic;
-		this.emissionNominalValue = formactNumber(emissionNominalValue, 6, false);
+		this.emissionNominalValue = formactNumber(emissionNominalValue, 6, false, false);
 	}
 	
 	public void updateNominalValue(String emissionDate, String updateDate, String paymentDate, int numberOfPlots, int amortizedPlots){
@@ -19,7 +19,7 @@ public class LFTA extends Selic{
 		double arg2 = getProductFactor(emissionDate, updateDate) * getEmissionNominalValue() * Math.pow((1 + increaseTax), DU/DUt);
 		double arg3 = 1/(numberOfPlots - amortizedPlots);
 		
-		setUpdatedNominalValue(formactNumber(arg1-(arg2*arg3), 6, false));
+		setUpdatedNominalValue(formactNumber(arg1-(arg2*arg3), 6, false, false));
 	}
 
 	public double getProductFactor(String emissionDate, String updateDate) {
