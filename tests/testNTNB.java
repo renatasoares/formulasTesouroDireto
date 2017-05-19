@@ -17,18 +17,18 @@ public class testNTNB {
 
 	@Test
 	public void calculateIncomeFactor() {
-		double incomeFactor = Math.pow((0.30/0.18), (10/20));
+		double incomeFactor = Math.pow((0.30/0.18), (10/20.0));
 		double incomeFactorExpected = precision.formatNumber(incomeFactor, 6, false);
 	
-		Assert.assertNotSame(ntnB.calculateIncomeFactor(0.30, 0.18, "25/01/2017", "05/02/2017"), incomeFactorExpected);
+		Assert.assertNotSame(ntnB.calculateIncomeFactor(0.30, 0.18, 10, 20), incomeFactorExpected);
 	}
 	
 	@Test
 	public void testNominalValueUpdated() {
-		double nominalValue =  Math.pow((0.30/0.18), (10/20)) * (0.39/0.17) * 1000;
+		double nominalValue =  Math.pow((0.30/0.18), (10/20.0)) * (0.39/0.17) * 1000;
 		double nominalValueExpected = precision.formatNumber(nominalValue, 6, false);
 		
-		Assert.assertNotSame(ntnB.calculateNominalValueUpdated(0.30, 0.18, "25/01/2017", "05/02/2017", 0.39, 0.17, 1000), nominalValueExpected);
+		Assert.assertNotSame(ntnB.calculateNominalValueUpdated(0.30, 0.18, 10, 20, 0.39, 0.17, 1000), nominalValueExpected);
 	}
 	
 	@Test
