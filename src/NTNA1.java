@@ -10,10 +10,9 @@ public class NTNA1 extends Precision {
 		return netValue;
 	}
 	
-	public double calculatePU(double quotationDolarA, double quotationDolarB, double emissionValue, double amortizationPercentege) {
+	public void calculatePU(double quotationDolarA, double quotationDolarB, double emissionValue, double amortizationPercentege) {
 		double puAmortization = (quotationDolarA/quotationDolarB) * calculateNetValue(emissionValue, amortizationPercentege);
 		setPUAmortization(formactNumber(puAmortization, 6, false, false));
-		return formactNumber(puAmortization, 6, false, false);
 	}
 	
 	public double calculateInterestFactor(String dtp, String dtup, double rate) {
@@ -28,7 +27,7 @@ public class NTNA1 extends Precision {
 	}
 	
 	public double getPUAmortization() {
-		return puAmortization;
+		return this.puAmortization;
 	}
 
 	public void setPUAmortization(double puAmortization) {

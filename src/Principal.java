@@ -12,7 +12,7 @@ public class Principal {
 			System.out.println("2 - LFT-A");
 			System.out.println("3 - LFT-B");
 			System.out.println("4 - LTN");
-			System.out.println("5 - Sair");
+			System.out.println("5 - NTN-A1");
 			System.out.println("6 - NTN-A3");
 			System.out.println("7 - NTN-A6");
 			System.out.println("8 - NTN-B");

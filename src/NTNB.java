@@ -9,10 +9,9 @@ public class NTNB extends Precision{
 		return formactNumber(incomeFactor, 6, false, false);	
 	}
 		
-	public double calculateNominalValueUpdated(double ipcat1, double ipcat0, int dc, int dct, double ipcatA, double ipcatB, double vn) {
+	public void calculateNominalValueUpdated(double ipcat1, double ipcat0, int dc, int dct, double ipcatA, double ipcatB, double vn) {
 		double nominalValue = calculateIncomeFactor(ipcat1, ipcat0, dc, dct) * (ipcatA/ipcatB) * vn;
 		setNominalValueUpdated(formactNumber(nominalValue, 6, false, false));
-		return formactNumber(nominalValue, 6, true, false);
 	}
 	
 	public double calculateInterestFactor(double rate, int n, int dcp, int dct) {

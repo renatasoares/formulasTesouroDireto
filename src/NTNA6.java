@@ -2,10 +2,9 @@ public class NTNA6 extends Precision {
 
 	double nominalValueUpdated;
 
-	public double calculateNominalValueUpdated(double quotationDolarA, double quotationDolarB, double emissionValue) {
+	public void calculateNominalValueUpdated(double quotationDolarA, double quotationDolarB, double emissionValue) {
 		double nominalValue = (quotationDolarA/quotationDolarB) * emissionValue;
-		setNominalValueUpdated(formactNumber(nominalValue, 6, true, false));
-		return formactNumber(nominalValue, 6, true, false);
+		setNominalValueUpdated(formactNumber(nominalValue, 6, true, true));
 	}
 	
 	public double calculateInterestFactor(String dtp, String dtup, double rate) {

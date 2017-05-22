@@ -5,10 +5,9 @@ public class NTNA3 extends Precision {
 	double nominalValue;
 	double interestFactor;
 
-	public double calculateNominalValue(double quotationDolarA, double quotationDolarB) {
+	public void calculateNominalValue(double quotationDolarA, double quotationDolarB) {
 		double nominalValue = (quotationDolarA/quotationDolarB) * 1000;
 		setNominalValue(formactNumber(nominalValue, 6, false, false));
-		return formactNumber(nominalValue, 6, false, false);
 	}
 	
 	public double calculateInterestFactor(double rate, int n) {
