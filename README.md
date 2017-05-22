@@ -25,4 +25,15 @@ A critério da dupla.
 ### Valor do exercício: 
 Esse exercício substitui a nota da 2a avaliação d  disciplina.
 
+#### Alunas: 
 
+Renata Soares dos Santos - 14/0065415
+Sabryna de Sousa Pessoa - 14/0051155
+
+### Execução
+
+- Para executar o software, basta entrar na pasta "src" e rodar a classe "Principal.java".
+
+### Cobertura
+
+- A cobertura atual encontra-se em 72,5%, mas isso deve-se a classe Principal que não está sendo testada e há alguns _getters_ e _setters_.
